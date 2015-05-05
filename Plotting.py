@@ -39,6 +39,7 @@ class SpacePlot:
                 for j in range(0,self.dimensions):
                 #Assign corresponding activity
                    self.grid[i,j] = self.Vm[i + j,t]
+#                   print(self.grid)
             bp = self.space_ax.imshow(self.grid, interpolation = 'none')
             return bp,
 #HACK once animation has played stop the animation, right now it will play a dead population 
