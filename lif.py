@@ -51,12 +51,7 @@ ylim([0,2])
 
 show()
 
-#This is are the real time plots I added
-#This plot should show the activity of neurons in the network (simplified to a 2d grid)
-fig = plt.figure()
-space_ax = fig.add_subplot(111)
-grid = np.zeros(4).reshape(2,2)
-bp = space_ax.imshow(grid, interpolation = 'none')
+
 
 #This plot should show the time course of the activity. None of it is in real time really though. It is a replay of the simulation
 def simData():
@@ -91,7 +86,6 @@ time_template = 'Time = %.1f s'    # prints running simulation time
 time_text = ax.text(0.05, 0.9, '', transform=ax.transAxes)
 
 ani = animation.FuncAnimation(fig, simPoints, simData, blit=False, interval=10, repeat=True)
-anim_space = animation.FuncAnimation(fig,  space_animate, frames=30, interval=20, blit=True)
 
 
 plt.show()
