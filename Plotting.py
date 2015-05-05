@@ -39,9 +39,9 @@ class SpacePlot:
                 for j in range(0,self.dimensions):
                 #Assign corresponding activity
                    self.grid[i,j] = self.Vm[i + j,t]
-                   print(self.grid)
             bp = self.space_ax.imshow(self.grid, interpolation = 'none')
             return bp,
+#HACK once animation has played stop the animation, right now it will play a dead population 
         else:
             self.grid = np.zeros(self.cellCount).reshape(self.dimensions,self.dimensions)
             bp = self.space_ax.imshow(self.grid, interpolation = 'none')
@@ -51,4 +51,7 @@ class SpacePlot:
     
     def plot_activity(self):
        anim_space = animation.FuncAnimation(self.fig,  self.space_animate, interval=500, blit=True)
-     #  anim_space = animation.FuncAnimation(self.fig,  self.space_animate, frames=30, interval=10, blit=True)
+#       try:
+#           plt.show()
+#       except AttributeError: 
+#           pass

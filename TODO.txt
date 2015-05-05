@@ -1,0 +1,5 @@
+1) How to make a super global variable that will always be the same and shared through all the instances of all the classes (without the need to assign it). In C it would be a static variable.
+
+2) How to automatically terminate animation once it played all the data
+
+3) Decide on synchronization methods, real time or not. In any case how to do it.

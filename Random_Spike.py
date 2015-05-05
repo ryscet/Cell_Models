@@ -15,12 +15,12 @@ class RandomSpike:
     ## setup parameters and state variables
     T = 1000                # total time to simulate (msec)
     ## Random Spike variables
-    Vm = np.zeros(T) # potential (V) trace over time 
     spike_amp = 1.5
 
     def __init__(self, _firingRate):
+        self.Vm = np.zeros(self.T) # potential (V) trace over time 
         self.firingRate =  _firingRate
-        Random_Spike.randomCellCount += 1
+        RandomSpike.randomCellCount += 1
 
     def Simulate(self):        
         spike_t = sample(range(0, self.T), self.firingRate)
