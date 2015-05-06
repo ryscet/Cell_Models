@@ -16,7 +16,7 @@ class IntegrateFire:
 
     T = 1000                  # total time to simulate (msec) // 1sec = 1000 msec so we are doing 1 sec simulations
 
-    def __init__(self, _input):
+    def __init__(self):
         ## Simulation parameters
 
         self.dt = 1                                     # simulation time step (msec)
@@ -30,23 +30,23 @@ class IntegrateFire:
         self.tau_m   = self.Rm*self.Cm     # time constant (msec)
         self.tau_ref = 4                   # refractory period (msec)
         self.Vth     = 1                   # spike threshold (V)
-        self.V_spike = 0.5                 # spike delta (V)
+        self.V_spike = 2.5                 # spike delta (V)
 
-        ## Input stimulus
-        self.I  =  _input                # input current (A)
+        ## first activity, never used
+        self.I  =  np.random.uniform(0,3.0)              
 
 ## iterate over each time step
 ##This adds the input I multiplied by resistance Rm and divided by time
 #If the transformed input exceeds threshold Vth spike is generated (0.5 is added to the Vm) 
-    def Simulate(self):        
+    def Simulate(self, timestep, _input):        
         ## iterate over each time step
-        for i, t in enumerate(self.time): 
-            if t > self.t_rest:
-                self.Vm[i] = self.Vm[i-1] + (-self.Vm[i-1] + self.I*self.Rm) / self.tau_m * self.dt
-                if self.Vm[i] >= self.Vth:
-                    self.Vm[i] += self.V_spike
-                    self.t_rest = t + self.tau_ref
-        return self.Vm
+        if timestep > self.t_rest:
+            self.Vm[timestep] = self.Vm[timestep-1] + (-self.Vm[timestep-1] + _input * self.Rm) / self.tau_m * self.dt
+            if self.Vm[timestep] >= self.Vth:
+                self.Vm[timestep] += self.V_spike
+                self.t_rest = timestep  + self.tau_ref
+        
+        return self.Vm[timestep]
 
 #------------This part is just for plotting-----------------
 
@@ -54,8 +54,9 @@ class IntegrateFire:
 ## plot membrane potential trace  
     def Plot(self):
         ## plot membrane potential trace  
+        figure()
         plot(self.time, self.Vm)
-        title('Leaky Integrate-and-Fire Example')
+        title('Leaky Integrate-and-Fire')
         ylabel('Membrane Potential (V)')
         xlabel('Time (msec)')
         ylim([0,2])

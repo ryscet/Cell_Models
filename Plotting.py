@@ -14,7 +14,7 @@ from math import sqrt
 class SpacePlot:
     'Draws an image in which each cell represents the spiking activity of a neuron in a population'
       
-
+#Cell count is the total amount of cells, activity is the matrix of time series
     def __init__(self, _cellCount, _activity):
         self.cellCount =  _cellCount
         self.dimensions = int(sqrt(self.cellCount))
@@ -37,10 +37,12 @@ class SpacePlot:
         #Iterate through each box of 2D grid
             for i in range(0,self.dimensions):
                 for j in range(0,self.dimensions):
-                #Assign corresponding activity
-                   self.grid[i,j] = self.Vm[i + j,t]
-#                   print(self.grid)
+                #Assign corresponding activity, add the column multiplied by dimensions to the row to get a translation from a matrix of 1D timeseries to 2D spaceplot
+                   #self.grid[i,j] = self.Vm[(i * self.dimensions) + j,t]
+                   self.grid[i,j] = self.Vm[i,j][t]
+                   print(t)
             bp = self.space_ax.imshow(self.grid, interpolation = 'none')
+#            print(self.grid)
             return bp,
 #HACK once animation has played stop the animation, right now it will play a dead population 
         else:

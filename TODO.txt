@@ -2,4 +2,11 @@
 
 2) How to automatically terminate animation once it played all the data
 
-3) Decide on synchronization methods, real time or not. In any case how to do it.
+3) Decide on synchronisation methods, real time or not. In any case how to do it.
+
+4) Make the neurone simulation time connected to main simulation time (right now I just input the same values…)
+
+5) #Unfortunately I think all nicer ways of doing a for loop in python have the same performance, list comprehensions etc are all good looking for loops. We will need to optimize.
+
+
+6) Now population matrix can only be square. Will have to do some changes to have other shapes

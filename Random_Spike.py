@@ -10,7 +10,6 @@ from random import sample
 
 class RandomSpike:
     'Generates spikes in a given frequency with uniform noise'
-    randomCellCount = 0
       
     ## setup parameters and state variables
     T = 1000                # total time to simulate (msec)
@@ -20,18 +19,20 @@ class RandomSpike:
     def __init__(self, _firingRate):
         self.Vm = np.zeros(self.T) # potential (V) trace over time 
         self.firingRate =  _firingRate
-        RandomSpike.randomCellCount += 1
+        self.spike_t = sample(range(0, self.T), self.firingRate) # select a random index for a spike. Firing rate determines the amount of spike within the simulation time. They are uniformely distributed.
+        self.Vm[self.spike_t] = self.spike_amp # At the selected random indexes mark a spike
 
-    def Simulate(self):        
-        spike_t = sample(range(0, self.T), self.firingRate)
-        self.Vm[spike_t] = self.spike_amp
-        return self.Vm
 
-    def Plot(self,activity):
+
+    #def Simulate(self, timestep):        
+        #return self.Vm
+
+    def Plot(self):
         ## plot membrane potential trace
+        figure()
         time = np.linspace(0,self.T,1000)
   
-        plot(time, activity)
+        plot(time, self.Vm)
         title('Random Spike')
         ylabel('Membrane Potential (V)')
         xlabel('Time (msec)')
