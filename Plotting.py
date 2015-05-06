@@ -13,7 +13,7 @@ from math import sqrt
 
 class SpacePlot:
     'Draws an image in which each cell represents the spiking activity of a neuron in a population'
-      
+    simulationTime = 1000
 #Cell count is the total amount of cells, activity is the matrix of time series
     def __init__(self, _cellCount, _activity):
         self.cellCount =  _cellCount
@@ -32,15 +32,14 @@ class SpacePlot:
     #This function is called by the animation function in plot_activity. The iterator t is incremented by the animation function.
     #Here we take the 2D coordinates of the grid (i and j are like x and y) and assign to them a value from a matrix of activity at time t. 
     #In the matrix of activity Vm the rows represent a cell and column represent time [cell_1_t1, cell_1_t2, cell_1_t3...,
-    #                                                                                  cell_2_t1, cell_2_t2, cell_2_t3..., ] 
-        if(t < len(self.Vm[0])):
+    #                                                                     cell_2_t1, cell_2_t2, cell_2_t3..., ] 
+        if(t < self.simulationTime):
         #Iterate through each box of 2D grid
             for i in range(0,self.dimensions):
                 for j in range(0,self.dimensions):
                 #Assign corresponding activity, add the column multiplied by dimensions to the row to get a translation from a matrix of 1D timeseries to 2D spaceplot
                    #self.grid[i,j] = self.Vm[(i * self.dimensions) + j,t]
                    self.grid[i,j] = self.Vm[i,j][t]
-                   print(t)
             bp = self.space_ax.imshow(self.grid, interpolation = 'none')
 #            print(self.grid)
             return bp,
