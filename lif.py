@@ -29,7 +29,7 @@ class IntegrateFire:
         self.Cm      = 10                  # capacitance (uF)
         self.tau_m   = self.Rm*self.Cm     # time constant (msec)
         self.tau_ref = 4                   # refractory period (msec)
-        self.Vth     = 1                   # spike threshold (V)
+        self.Vth     = 0.3                  # spike threshold (V)
         self.V_spike = 2.5                 # spike delta (V)
 
         ## first activity, never used

@@ -23,6 +23,10 @@ class SpacePlot:
         self.space_ax = self.fig.add_subplot(111)
         self.bp = self.space_ax.imshow(self.grid, interpolation = 'none')
         self.Vm = _activity 
+        
+        self.space_ax.set_title('Activity plot')
+        self.space_ax.set_ylabel('cell y position')
+        self.space_ax.set_xlabel('cell x position')
 
 ##This is are the real time plots I added
 ##This plot should show the activity of neurons in the network (simplified to a 2d grid)
