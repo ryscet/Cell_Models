@@ -8,6 +8,5 @@ The .ai file is just a source of the pdf.
 
 Here is the unclickable link from the pdf:  http://www.neurdon.com/2011/01/19/neural-modeling-with-python-part-1/
 
-Let’s make some cool shit.
 
 PS. To see the time course of membrane potential in ‘real time’ refer to older versions.
